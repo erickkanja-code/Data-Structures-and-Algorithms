@@ -21,6 +21,17 @@ def add_edge(v1, v2, cost):
     graph[v1_index][v2_index] = cost
     graph[v2_index][v1_index] = cost
     
+def delete_node(v):
+    global node_count
+    if v not in nodes:
+        print(f"{v} is not present in graph")
+    else:
+        index1 = nodes.index(v)
+        nodes.pop(index1)
+        node_count -= 1
+        graph.pop(index1)
+        for row in graph:
+            row.pop(index1)
 
  
 def print_graph():
@@ -28,22 +39,20 @@ def print_graph():
         for j in range(node_count):
             print(format(graph[i][j], "<3"), end=" ")
         print()
-    
-nodes = []
-graph = []
+        
+nodes =[]
+graph=[]
 node_count = 0
-print("Before adding nodes")
-print(nodes)
-print_graph()
-add_node("A")
 
+add_node("A")
 add_node("B")
-add_node("D")
+add_node("C")
 add_edge("A", "B", 10)
-add_edge("A", "D", 5)
-print("After adding nodes")
-print(nodes)
 print_graph()
+
+delete_node("C")
+print_graph()
+print(nodes)
 
 
 
