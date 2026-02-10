@@ -32,6 +32,16 @@ def delete_node(v):
         graph.pop(index1)
         for row in graph:
             row.pop(index1)
+            
+def delete_edge(v1, v2):
+    if v1 not in nodes or v2 not in nodes:
+        print("Either or both of the vertices are not in the graph")
+        return
+    index1 = nodes.index(v1)
+    index2 = nodes.index(v2)
+    graph[index1][index2] = 0
+    graph[index2][index1] = 0
+    
 
  
 def print_graph():
@@ -48,11 +58,11 @@ add_node("A")
 add_node("B")
 add_node("C")
 add_edge("A", "B", 10)
+add_edge("A", "C", 5)
+print_graph()
+delete_edge("A", "C")
 print_graph()
 
-delete_node("C")
-print_graph()
-print(nodes)
 
 
 
