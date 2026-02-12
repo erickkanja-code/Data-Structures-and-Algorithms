@@ -22,12 +22,18 @@ def delete_node(v):
                 graph[i].remove(j)
                 break
 
-def delete_edge(v1, v2):
-    index1 = graph[v1].index(v2)
-    index2 = graph[v2].index(v1)
-    
-    graph[v1].pop(index1)
-    graph[v2].pop(index2)
+def delete_edge(v1, v2, cost):
+    # if v2 in graph[v1]:
+    #     index1 = graph[v1].index(v2)
+    #     index2 = graph[v2].index(v1)
+    #     graph[v1].pop(index1)
+    #     graph[v2].pop(index2)
+        
+    temp = [v1, cost]
+    temp1 = [v2, cost]
+    if temp1 in graph[v1]:
+        graph[v1].remove(temp1)
+        graph[v2].remove(temp)
 
 graph = {}
 add_node("A")
@@ -45,5 +51,5 @@ add_edge("C", "D", 1)
 add_edge("E", "D", 2)
 print(graph)
 
-delete_node("C")
+delete_edge("B", "E", 3)
 print(graph)
