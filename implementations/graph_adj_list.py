@@ -4,12 +4,12 @@ def add_node(v):
     else:
         graph[v] = []
         
-def add_edge(v1, v2, cost):
+def add_edge(v1, v2):
     if v1 not in graph or v2 not in graph:
         print("Element missing from graph")
     else:
-        graph[v1].append([v2, cost])
-        graph[v2].append([v1, cost])
+        graph[v1].append(v2)
+        graph[v2].append(v1)
 
 def delete_node(v):
     if v not in graph:
@@ -22,18 +22,18 @@ def delete_node(v):
                 graph[i].remove(j)
                 break
 
-def delete_edge(v1, v2, cost):
-    # if v2 in graph[v1]:
-    #     index1 = graph[v1].index(v2)
-    #     index2 = graph[v2].index(v1)
-    #     graph[v1].pop(index1)
-    #     graph[v2].pop(index2)
+def delete_edge(v1, v2):
+    if v2 in graph[v1]:
+        index1 = graph[v1].index(v2)
+        index2 = graph[v2].index(v1)
+        graph[v1].pop(index1)
+        graph[v2].pop(index2)
         
-    temp = [v1, cost]
-    temp1 = [v2, cost]
-    if temp1 in graph[v1]:
-        graph[v1].remove(temp1)
-        graph[v2].remove(temp)
+    # temp = [v1, cost]
+    # temp1 = [v2, cost]
+    # if temp1 in graph[v1]:
+    #     graph[v1].remove(temp1)
+    #     graph[v2].remove(temp)
 
 graph = {}
 add_node("A")
@@ -42,14 +42,14 @@ add_node("C")
 add_node("D")
 add_node("E")
 
-add_edge("A", "B", 10)
-add_edge("B", "E", 3)
-add_edge("A", "C", 5)
-add_edge("A", "D", 4)
-add_edge("B", "D", 7)
-add_edge("C", "D", 1)
-add_edge("E", "D", 2)
+add_edge("A", "B")
+add_edge("B", "E")
+add_edge("A", "C")
+add_edge("A", "D")
+add_edge("B", "D")
+add_edge("C", "D")
+add_edge("E", "D")
 print(graph)
 
-delete_edge("B", "E", 3)
+delete_edge("B", "E")
 print(graph)
