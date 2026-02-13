@@ -35,6 +35,19 @@ def delete_edge(v1, v2):
     #     graph[v1].remove(temp1)
     #     graph[v2].remove(temp)
 
+def DFS(node, visited, graph):
+    if node not in graph:
+        print("Node is not present in the graph")
+        return
+    if node not in visited:
+        print(node)
+        visited.add(node)
+        for i in graph[node]:
+            DFS(i, visited, graph)
+    
+
+
+visited= set()
 graph = {}
 add_node("A")
 add_node("B")
@@ -50,6 +63,5 @@ add_edge("B", "D")
 add_edge("C", "D")
 add_edge("E", "D")
 print(graph)
+DFS("C", visited, graph)
 
-delete_edge("B", "E")
-print(graph)
