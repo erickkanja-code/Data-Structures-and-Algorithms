@@ -45,12 +45,28 @@ def DFS_recursive(node, visited, graph):
         for neighbour in graph[node]:
             DFS_recursive(neighbour, visited, graph)
 
-def DFS_iterative(node):
-    visited = set()
+def DFS_iterative(node, visited, graph):
+    if node not in graph:
+        print("Node is not present in graph")
+        return
+    if node in visited:
+        return
+    stack = []
+    stack.append(node)
+    while stack: 
+        current = stack.pop()
+        
+        if current not in visited:
+            print(current)
+            visited.add(current)
+            for i in graph[current]:
+                stack.append(i)
+
+        
     
     
 
-# visited= set()
+visited= set()
 graph = {}
 add_node("A")
 add_node("B")
