@@ -35,19 +35,22 @@ def delete_edge(v1, v2):
     #     graph[v1].remove(temp1)
     #     graph[v2].remove(temp)
 
-def DFS(node, visited, graph):
+def DFS_recursive(node, visited, graph):
     if node not in graph:
         print("Node is not present in the graph")
         return
     if node not in visited:
         print(node)
         visited.add(node)
-        for i in graph[node]:
-            DFS(i, visited, graph)
+        for neighbour in graph[node]:
+            DFS_recursive(neighbour, visited, graph)
+
+def DFS_iterative(node):
+    visited = set()
+    
     
 
-
-visited= set()
+# visited= set()
 graph = {}
 add_node("A")
 add_node("B")
@@ -63,5 +66,5 @@ add_edge("B", "D")
 add_edge("C", "D")
 add_edge("E", "D")
 print(graph)
-DFS("C", visited, graph)
+# DFS_recursive("C", visited, graph)
 
