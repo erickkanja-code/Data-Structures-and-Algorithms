@@ -79,6 +79,7 @@ add_node("D")
 add_node("E")
 add_node("F")
 add_node("G")
+add_node("K")
 
 add_edge("A", "B")
 # add_edge("B", "E")
@@ -93,13 +94,11 @@ add_edge("E", "G")
 print(graph)
 DFS_recursive("A", visited, graph)
 
-for i in list(graph):
+for i in graph:
     if i not in visited:
-        print("Given graph is a disconnected graph")
-        break
-else:
-    print("The graph is a connected graph")
-
+        print("next connected component")
+        DFS_recursive(i, visited, graph)
+        
     
     
 
