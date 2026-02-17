@@ -45,22 +45,26 @@ def DFS_recursive(node, visited, graph):
         for neighbour in graph[node]:
             DFS_recursive(neighbour, visited, graph)
 
-def DFS_iterative(node, visited, graph):
-    if node not in graph:
-        print("Node is not present in graph")
-        return
-    if node in visited:
-        return
-    stack = []
-    stack.append(node)
-    while stack: 
-        current = stack.pop()
+
+
+
+
+# def DFS_iterative(node, visited, graph):
+#     if node not in graph:
+#         print("Node is not present in graph")
+#         return
+#     if node in visited:
+#         return
+#     stack = []
+#     stack.append(node)
+#     while stack: 
+#         current = stack.pop()
         
-        if current not in visited:
-            print(current)
-            visited.add(current)
-            for i in graph[current]:
-                stack.append(i)
+#         if current not in visited:
+#             print(current)
+#             visited.add(current)
+#             for i in graph[current]:
+#                 stack.append(i)
 
         
     
@@ -73,14 +77,30 @@ add_node("B")
 add_node("C")
 add_node("D")
 add_node("E")
+add_node("F")
+add_node("G")
 
 add_edge("A", "B")
-add_edge("B", "E")
+# add_edge("B", "E")
 add_edge("A", "C")
-add_edge("A", "D")
-add_edge("B", "D")
+add_edge("B", "C")
+# add_edge("A", "D")
+# add_edge("B", "D")
 add_edge("C", "D")
-add_edge("E", "D")
-print(graph)
-# DFS_recursive("C", visited, graph)
+add_edge("E", "F")
+add_edge("E", "G")
 
+print(graph)
+DFS_recursive("A", visited, graph)
+
+for i in list(graph):
+    if i not in visited:
+        print("Given graph is a disconnected graph")
+        break
+else:
+    print("The graph is a connected graph")
+
+    
+    
+
+    
