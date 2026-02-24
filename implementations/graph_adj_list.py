@@ -3,15 +3,15 @@ def add_node(v):
         print(f"{v} in graph already")
     else:
         graph[v] = []
-        reversed_graph[v] = []
+        # reversed_graph[v] = []
         
 def add_edge(v1, v2):
     if v1 not in graph or v2 not in graph:
         print("Element missing from graph")
     else:
-        # graph[v1].append(v2)
         graph[v1].append(v2)
-        reversed_graph[v2].append(v1)
+        graph[v1].append(v2)
+        # reversed_graph[v2].append(v1)
 
 # def delete_node(v):
 #     if v not in graph:
@@ -47,7 +47,23 @@ def DFS_recursive(node, visited, graph):
         for neighbour in graph[node]:
             DFS_recursive(neighbour, visited, graph)
 
-
+def BFS(node, visited1, graph):
+    if node not in graph:
+        print("The node is not present")
+        return
+    if node not in visited1:
+        Queue = []
+        Queue.append(node)
+        visited1.add(node)
+        while Queue:
+            print(node)
+            visited1.add(node)
+            current = Queue.pop(0)
+            for neighbor in graph[current]:
+                if neighbor not in visited:
+                    Queue.append(neighbor)
+                    visited1.add(i)
+                    
 
 
 
@@ -72,10 +88,9 @@ def DFS_recursive(node, visited, graph):
     
     
 
-visited= set()
-visited1= set()
+visited = set()
+visited1=set()
 graph = {}
-reversed_graph ={}
 
 add_node("A")
 add_node("B")
@@ -83,11 +98,11 @@ add_node("C")
 add_node("D")
 add_node("E")
 add_node("F")
-add_node("G")
+
 
 add_edge("A", "B")
 add_edge("A", "C")
-add_edge("A", "D")
+add_edge("B", "D")
 add_edge("D", "E")
 add_edge("B", "E")
 add_edge("C", "D")
