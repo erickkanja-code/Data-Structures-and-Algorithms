@@ -1,3 +1,5 @@
+import collections
+
 def add_node(v):
     if v in graph:
         print(f"{v} in graph already")
@@ -10,7 +12,7 @@ def add_edge(v1, v2):
         print("Element missing from graph")
     else:
         graph[v1].append(v2)
-        graph[v1].append(v2)
+        graph[v2].append(v1)
         # reversed_graph[v2].append(v1)
 
 # def delete_node(v):
@@ -37,31 +39,44 @@ def add_edge(v1, v2):
     #     graph[v1].remove(temp1)
     #     graph[v2].remove(temp)
 
+
 def DFS_recursive(node, visited, graph):
     if node not in graph:
-        print("Node is not present in the graph")
         return
     if node not in visited:
         print(node)
         visited.add(node)
-        for neighbour in graph[node]:
-            DFS_recursive(neighbour, visited, graph)
+        for neighbor in graph[node]:
+            DFS_recursive(neighbor, visited, graph)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def BFS(node, visited1, graph):
     if node not in graph:
         print("The node is not present")
         return
     if node not in visited1:
-        Queue = []
+        Queue = collections.deque()
         Queue.append(node)
         visited1.add(node)
         while Queue:
-            print(node)
-            current = Queue.pop(0)
+            current = Queue.popleft()
+            print(current)
             for neighbor in graph[current]:
-                if neighbor not in visited:
+                if neighbor not in visited1:
                     Queue.append(neighbor)
-                    visited1.add(i)
+                    visited1.add(neighbor)
                     
 
 
@@ -86,8 +101,7 @@ def BFS(node, visited1, graph):
         
     
     
-
-visited = set()
+visited=set()
 visited1=set()
 graph = {}
 
@@ -102,26 +116,27 @@ add_node("F")
 add_edge("A", "B")
 add_edge("A", "C")
 add_edge("B", "D")
-add_edge("D", "E")
-add_edge("B", "E")
 add_edge("C", "D")
-add_edge("C", "F")
-add_edge("E", "F")
-add_edge("E", "G")
+add_edge("B", "E")
+add_edge("E", "D")
+add_edge("D", "F")
 
 print(graph)
 DFS_recursive("A", visited, graph)
 
-for i in list(graph):
-    if i not in visited:
-        print("Weakly connected graph")
-        break
-else:
-    DFS_recursive("A", visited1, reversed_graph) 
-    if visited == visited1:
-        print("strongly connected graph")
-    else:
-        print("weakly connected graph")
+# print("BFS")
+# BFS("A", visited1, graph)
+
+# for i in list(graph):
+#     if i not in visited:
+#         print("Weakly connected graph")
+#         break
+# else:
+#     DFS_recursive("A", visited1, reversed_graph) 
+#     if visited == visited1:
+#         print("strongly connected graph")
+#     else:
+#         print("weakly connected graph")
     
     
     
