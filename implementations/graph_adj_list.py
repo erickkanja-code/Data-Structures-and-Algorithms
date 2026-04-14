@@ -50,18 +50,6 @@ def DFS_recursive(node, visited, graph):
             DFS_recursive(neighbor, visited, graph)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 def BFS(node, visited1, graph):
     if node not in graph:
         print("The node is not present")
@@ -79,7 +67,18 @@ def BFS(node, visited1, graph):
                     visited1.add(neighbor)
                     
 
-
+def DFS_iterative(node, visited, graph):
+    if node not in graph:
+        return
+    stack = collections.deque()
+    stack.append(node)
+    while stack:
+        current = stack.pop()
+        if current not in visited:
+            print(current)
+            visited.add(current)
+            for neighbor in graph[current]:
+                stack.append(neighbor)
 
 # def DFS_iterative(node, visited, graph):
 #     if node not in graph:
@@ -98,6 +97,22 @@ def BFS(node, visited1, graph):
 #             for i in graph[current]:
 #                 stack.append(i)
 
+
+def BFS(node, visited, graph):
+    if node not in graph:
+        return
+    queue = collections.deque()
+    queue.append(node)
+    
+    while queue:
+
+        i = queue.popleft()
+        for j in graph[i]:
+            if j not in visited:
+                queue.append(j)
+                visited.add(j)
+                print(j)
+    
         
     
     
@@ -122,7 +137,7 @@ add_edge("E", "D")
 add_edge("D", "F")
 
 print(graph)
-DFS_recursive("A", visited, graph)
+DFS_iterative("A", visited, graph)
 
 # print("BFS")
 # BFS("A", visited1, graph)
