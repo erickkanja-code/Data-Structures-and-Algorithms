@@ -25,7 +25,6 @@ def add_edge(v1, v2):
 #             if v in j:
 #                 graph[i].remove(j)
 #                 break
-
 # def delete_edge(v1, v2):
 #     if v2 in graph[v1]:
 #         index1 = graph[v1].index(v2)
@@ -43,29 +42,14 @@ def add_edge(v1, v2):
 def DFS_recursive(node, visited, graph):
     if node not in graph:
         return
-    if node not in visited:
-        print(node)
-        visited.add(node)
-        for neighbor in graph[node]:
-            DFS_recursive(neighbor, visited, graph)
-
-
-def BFS(node, visited1, graph):
-    if node not in graph:
-        print("The node is not present")
+    if node in visited:
         return
-    if node not in visited1:
-        Queue = collections.deque()
-        Queue.append(node)
-        visited1.add(node)
-        while Queue:
-            current = Queue.popleft()
-            print(current)
-            for neighbor in graph[current]:
-                if neighbor not in visited1:
-                    Queue.append(neighbor)
-                    visited1.add(neighbor)
-                    
+    print(node)
+    visited.add(node)
+    for neighbor in graph[node]:
+        DFS_recursive(neighbor, visited, graph)
+        
+
 
 def DFS_iterative(node, visited, graph):
     if node not in graph:
@@ -79,6 +63,53 @@ def DFS_iterative(node, visited, graph):
             visited.add(current)
             for neighbor in graph[current]:
                 stack.append(neighbor)
+        
+
+
+
+
+
+
+
+# def DFS_recursive(node, visited, graph):
+#     if node not in graph:
+#         return
+#     if node not in visited:
+#         print(node)
+#         visited.add(node)
+#         for neighbor in graph[node]:
+#             DFS_recursive(neighbor, visited, graph)
+
+
+# def BFS(node, visited1, graph):
+#     if node not in graph:
+#         print("The node is not present")
+#         return
+#     if node not in visited1:
+#         Queue = collections.deque()
+#         Queue.append(node)
+#         visited1.add(node)
+#         while Queue:
+#             current = Queue.popleft()
+#             print(current)
+#             for neighbor in graph[current]:
+#                 if neighbor not in visited1:
+#                     Queue.append(neighbor)
+#                     visited1.add(neighbor)
+                    
+
+# def DFS_iterative(node, visited, graph):
+#     if node not in graph:
+#         return
+#     stack = collections.deque()
+#     stack.append(node)
+#     while stack:
+#         current = stack.pop()
+#         if current not in visited:
+#             print(current)
+#             visited.add(current)
+#             for neighbor in graph[current]:
+#                 stack.append(neighbor)
 
 # def DFS_iterative(node, visited, graph):
 #     if node not in graph:
@@ -98,26 +129,30 @@ def DFS_iterative(node, visited, graph):
 #                 stack.append(i)
 
 
-def BFS(node, visited, graph):
+def BFS(node, visited2, graph):
     if node not in graph:
+        print(f"{node} not in graph")
         return
-    queue = collections.deque()
-    queue.append(node)
-    
-    while queue:
-
-        i = queue.popleft()
-        for j in graph[i]:
-            if j not in visited:
-                queue.append(j)
-                visited.add(j)
-                print(j)
+    Queue = collections.deque()
+    Queue.append(node)
+    visited2.add(node)
+    print(node)
+    while Queue:
+        current = Queue.popleft()
+        for neighbor in graph[current]:
+            if neighbor not in visited2:
+                Queue.append(neighbor)
+                visited2.add(neighbor)
+                print(neighbor)
     
         
+
+        
+
     
     
-visited=set()
-visited1=set()
+
+visited2=set()
 graph = {}
 
 add_node("A")
@@ -126,34 +161,24 @@ add_node("C")
 add_node("D")
 add_node("E")
 add_node("F")
+add_node("G")
 
 
 add_edge("A", "B")
-add_edge("A", "C")
-add_edge("B", "D")
+add_edge("B", "C")
 add_edge("C", "D")
-add_edge("B", "E")
-add_edge("E", "D")
-add_edge("D", "F")
+add_edge("D", "E")
+add_edge("E", "F")
+add_edge("F", "G")
+add_edge("A", "G")
 
-print(graph)
-DFS_iterative("A", visited, graph)
 
-# print("BFS")
-# BFS("A", visited1, graph)
-
-# for i in list(graph):
-#     if i not in visited:
-#         print("Weakly connected graph")
-#         break
-# else:
-#     DFS_recursive("A", visited1, reversed_graph) 
-#     if visited == visited1:
-#         print("strongly connected graph")
-#     else:
-#         print("weakly connected graph")
+print("BFS")
+BFS("A", visited2, graph)
+for i in graph:
+    if i not in visited2:
+        print("Disconnected graph")
+else:
+    print("Connected graph")
     
-    
-    
-
     
