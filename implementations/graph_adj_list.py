@@ -5,6 +5,7 @@ def add_node(v):
         print(f"{v} in graph already")
     else:
         graph[v] = []
+        # graph2[v] = []
         # reversed_graph[v] = []
         
 def add_edge(v1, v2):
@@ -14,6 +15,7 @@ def add_edge(v1, v2):
         graph[v1].append(v2)
         graph[v2].append(v1)
         # reversed_graph[v2].append(v1)
+        # graph2[v2].append(v1)
 
 # def delete_node(v):
 #     if v not in graph:
@@ -154,7 +156,8 @@ def BFS(node, visited2, graph):
 
 visited2=set()
 graph = {}
-
+visited3 = set()
+graph2 = {}
 add_node("A")
 add_node("B")
 add_node("C")
@@ -165,20 +168,28 @@ add_node("G")
 
 
 add_edge("A", "B")
-add_edge("B", "C")
-add_edge("C", "D")
+add_edge("A", "C")
+add_edge("A", "D")
+add_edge("B", "E")
 add_edge("D", "E")
+add_edge("C", "D")
+add_edge("C", "F")
 add_edge("E", "F")
-add_edge("F", "G")
-add_edge("A", "G")
+add_edge("E", "G")
 
 
 print("BFS")
 BFS("A", visited2, graph)
 for i in graph:
     if i not in visited2:
-        print("Disconnected graph")
+        print("Weakly connected graph")
+        break
 else:
-    print("Connected graph")
+
+    BFS("A", visited3, graph2)
+    if visited3 == visited2:
+        print("Strongly connected")
+    else:
+        print("Weakly connected")
     
     
