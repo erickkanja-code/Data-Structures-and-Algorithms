@@ -14,7 +14,11 @@ def add_edge(v1, v2):
         graph[v1].append(v2)
         graph[v2].append(v1)
         
+def shortest_path(start, target, visited):
+    
+        
 graph = {}
+visited = {}
 
 add_node("A")
 add_node("B")
